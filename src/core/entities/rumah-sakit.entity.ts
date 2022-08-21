@@ -1,12 +1,15 @@
+import { AutoMap } from '@automapper/classes';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
 export type RumahSakitDocument = RumahSakit & Document;
 @Schema()
 export class RumahSakit {
+  @AutoMap()
   @Prop({ required: true, unique: true })
   name: string;
 
-  @Prop()
+  @AutoMap()
+  @Prop({ unique: true })
   alamat: string;
 }
 
