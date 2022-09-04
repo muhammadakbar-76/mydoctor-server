@@ -2,8 +2,9 @@ import { AutomapperModule } from '@automapper/nestjs';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { classes } from '@automapper/classes';
+import { MongoDataServiceModule } from './frameworks/data-services/mongo/mongo.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { RumahSakitModule } from './components/rumah-sakit/rumah_sakit.module';
+import { RumahSakitModule, UserModule } from './components';
 
 @Module({
   imports: [
@@ -14,7 +15,9 @@ import { RumahSakitModule } from './components/rumah-sakit/rumah_sakit.module';
       strategyInitializer: classes(),
     }),
     MongooseModule.forRoot(process.env.MONGO_URI),
+    MongoDataServiceModule,
     RumahSakitModule,
+    UserModule,
   ],
   controllers: [],
   providers: [],

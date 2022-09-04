@@ -24,7 +24,6 @@ import { MongoDataService } from './mongo-data.service';
       { name: RumahSakit.name, schema: rumahSakitSchema },
       { name: User.name, schema: userSchema },
     ]),
-    MongooseModule.forRoot(process.env.MONGO_URI),
   ],
   providers: [{ provide: IDataServices, useClass: MongoDataService }],
   exports: [IDataServices],

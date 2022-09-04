@@ -2,11 +2,7 @@ import { Mapper } from '@automapper/core';
 import { InjectMapper } from '@automapper/nestjs';
 import { Injectable } from '@nestjs/common';
 import { IDataServices, RumahSakit } from '../../core';
-import {
-  CreateRumahSakitDto,
-  ReadRumahSakitDto,
-  UpdateRumahSakitDto,
-} from './dtos/';
+import { CreateRumahSakitDto, UpdateRumahSakitDto } from './dtos/';
 
 @Injectable()
 export default class RumahSakitService {
@@ -16,11 +12,10 @@ export default class RumahSakitService {
   ) {}
 
   async getAll() {
-    return this.mapper.mapArrayAsync(
-      await this._dataServices.rumahSakit.getAll(),
-      RumahSakit,
-      ReadRumahSakitDto,
-    );
+    const rumahSakit = await this._dataServices.rumahSakit.getAll();
+    console.log('dari service: ', rumahSakit);
+    // return this.mapper.mapArrayAsync(rumahSakit, RumahSakit, ReadRumahSakitDto);
+    return rumahSakit;
   }
 
   async getById(id: string) {
